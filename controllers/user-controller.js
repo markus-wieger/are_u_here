@@ -11,11 +11,11 @@ class UserController {
 
         if(!email ||!password) return res.json({ status: 'error', message: 'Please fill in all the fields' });
         else {
-            db.query("SELECT * FROM users WHERE email =?",[email], async (Err, results) => {
+            db.query("SELECT * FROM teachers WHERE email =?",[email], async (Err, results) => {
                 if (Err) throw Err;
                 if(results.length == 0 || results[0].password!= password) return res.json({ status: 'error', message: 'Wrong email or password' });
                 else {
-                    const token = jwt.sign({ id: results[0].id }, process.env.JWT_SECRET, { expiresIn: '1d' });
+                    const token = jwt.sign({ id: results[0].id }, process.env.JWT_SECRET, { expiresIn: '100d' });
                     
                     const cookieOptions = {
                         expiresIn: new Date(Date.now() + 1000 * 60 * 60 * 24 * 30),
