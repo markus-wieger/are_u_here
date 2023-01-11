@@ -18,6 +18,10 @@ const db = mysql.createConnection({
 const publicDirectory = path.join(__dirname, "../public"); //for css and javascript
 app.use(express.static(publicDirectory));
 
+
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+
 app.set("view engine", "hbs");
 
 
@@ -29,10 +33,11 @@ db.connect( (error) => {
     }
 });
 
-app.get("/", (req, res) => {
-    res.render("index")
 
-});
+
+//Routes
+app.use("/", require("./routes/pages.js"));
+app.use("/auth", require("./routes/auth.js"));
 
 
 
