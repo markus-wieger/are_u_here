@@ -1,12 +1,12 @@
 const express = require('express');
 const router = express.Router();
 
-const authController = require('../controllers/authController');
+const controller = require('../controllers/user-controller');
 
 //only accessible via POST method
 
-//          "/auth/register"
-router.post('/register', authController.register);
+//          "/auth/login"
+router.post('/login', controller.login);
 
 
 
