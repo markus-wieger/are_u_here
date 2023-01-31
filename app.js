@@ -15,7 +15,7 @@ const db = mysql.createConnection({
     database: process.env.DATABSE
 });
 
-const publicDirectory = path.join(__dirname, "../public"); //for css and javascript
+const publicDirectory = path.join(__dirname, "Users/mervetuz/Documents/FH-Studium/are_u_here/are_u_here/public"); //for css and javascript
 app.use(express.static(publicDirectory));
 
 

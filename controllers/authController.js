@@ -17,7 +17,7 @@ exports.register = (req, res) => {
 
 const{ email, password } = req.body;
 
-db.query(`SELECT email FROM teachers WHERE email = ?`, [email], async function(err, results) {
+db.query(`SELECT email FROM users WHERE email = ?`, [email], async function(err, results) {
     if (err) {
         console.log(err);
     }
@@ -25,7 +25,7 @@ db.query(`SELECT email FROM teachers WHERE email = ?`, [email], async function(e
     let hashedPassword = await bcrypt.hash(password, 8);
     console.log(hashedPassword);
 
-    db.query(`INSERT INTO teachers  SET ?`, {email: email, password: hashedPassword}, (err, results) => {
+    db.query(`INSERT INTO users  SET ?`, {email: email, password: hashedPassword}, (err, results) => {
         if (err) {
             console.log(err);
         }
